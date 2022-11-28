@@ -8,11 +8,14 @@ import HomeScreen from './screens/homeScreen';
 import RegistrationScreen from './screens/registrationScreen';
 
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
+      <StatusBar barStyle = "light-content" hidden = {false} backgroundColor = "#0782F9" translucent = {true}/>
+      
       <Stack.Navigator>
         <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
         <Stack.Screen options={{ headerShown: false }} name="Register" component={RegistrationScreen} />
@@ -20,7 +23,10 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
+  
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
