@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/core'
-import React from 'react'
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View, ScrollView, TextInput, Animated, FlatList, Image } from 'react-native'
+
+import React, { useEffect, useState } from "react";
+import { TouchableHighlight, Dimensions, StyleSheet, Text, TouchableOpacity, View, ScrollView, TextInput, Animated, FlatList, Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { auth } from '../firebase'
@@ -16,6 +17,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const {width} = Dimensions.get('screen');
 const cardWidth = width / 1.8;
+const cardWidth1 = width / 2 - 20;
 
 function ExploreScreen({navigation}) {
   const categories = ['All', 'Popular', 'Top Rated', 'Latest'];
@@ -59,11 +61,12 @@ function ExploreScreen({navigation}) {
     );
   };
 
-  const updateSearch = (text) => {
-    setState({ search: text});
-  }
+  
 
   const Card = ({books, index}) => {
+
+  
+
     const inputRange = [
       (index - 1) * cardWidth,
       index * cardWidth,
@@ -114,7 +117,7 @@ function ExploreScreen({navigation}) {
                 <Icon name="star" size={15} color={'orange'} />
                 <Icon name="star" size={15} color={'gray'} />
               </View>
-              <Text style={{fontSize: 10, color: 'gray'}}>69 reviews</Text>
+              <Text style={{fontSize: 10, color: 'gray'}}>{books.reviews} reviews</Text>
             </View>
           </View>
         </Animated.View>
@@ -153,6 +156,10 @@ function ExploreScreen({navigation}) {
     );
   };
 
+
+
+
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: "white"}}>
     <View style={styles.header}>
@@ -171,7 +178,7 @@ function ExploreScreen({navigation}) {
           <TextInput
             placeholder="Search by Title, or Author"
             style={{fontSize: 15, paddingLeft: 10}}
-            onChangeText={books.name}
+            onChangeText={() => {books.name}}
           />
         </View>
         <CategoryList />
@@ -227,71 +234,46 @@ function ExploreScreen({navigation}) {
 }
 
 function FavoritesScreen({navigation}) {
+
+  
   
   const [activeCardIndex, setActiveCardIndex] = React.useState(0);
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
-  
-
-  const Card = ({books, index}) => {
-    const inputRange = [
-      (index - 1) * cardWidth,
-      index * cardWidth,
-      (index + 1) * cardWidth,
-    ];
-    const opacity = scrollX.interpolate({
-      inputRange,
-      outputRange: [0.7, 0, 0.7],
-    });
-    const scale = scrollX.interpolate({
-      inputRange,
-      outputRange: [0.8, 1, 0.8],
-    });
+  const Card1 = ({books}) => {
     return (
-      <TouchableOpacity
-        disabled={activeCardIndex != index}
-        activeOpacity={1}
+      <TouchableHighlight
+        underlayColor={'white'}
+        activeOpacity={0.9}
         onPress={() => navigation.navigate('DetailsScreen', books)}>
-        <Animated.View style={{...styles.card, transform: [{scale}]}}>
-          <Animated.View style={{...styles.cardOverLay, opacity}} />
-          <Image source={books.image} style={styles.cardImage} />
-          <View style={styles.cardDetails}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <View>
-                <Text style={{fontWeight: 'bold', fontSize: 17}}>
-                  {books.name}
-                </Text>
-                <Text style={{color: 'gray', fontSize: 12}}>
-                  {books.author}
-                </Text>
-              </View>
-              <TouchableOpacity>
-              <Icon name="bookmark-border" size={26} color={'black'}/>
-              </TouchableOpacity>
-              
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 10,
-              }}>
-              <View style={{flexDirection: 'row'}}>
-                <Icon name="star" size={15} color={'orange'} />
-                <Icon name="star" size={15} color={'orange'} />
-                <Icon name="star" size={15} color={'orange'} />
-                <Icon name="star" size={15} color={'orange'} />
-                <Icon name="star" size={15} color={'gray'} />
-              </View>
-              <Text style={{fontSize: 10, color: 'gray'}}>69 reviews</Text>
-            </View>
+        <View style={styles.card1}>
+          <View style={{alignItems: 'center'}}>
+            <Image source={books.image} style={{height: 120, width: 185, borderRadius: 10}} />
           </View>
-        </Animated.View>
-      </TouchableOpacity>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', padding: 10}}>
+          <View>
+          <Text style={{fontSize: 13, fontWeight: 'bold'}}>{books.name}</Text>
+            <Text style={{fontSize: 12, color: 'gray', marginTop: 2}}>
+              {books.author}
+            </Text>
+          </View>
+            
+          </View>
+          <View
+            style={{
+              marginTop: 10,
+              marginHorizontal: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+            
+          </View>
+        </View>
+      </TouchableHighlight>
     );
   };
 
+  
   
 
   return (
@@ -306,7 +288,7 @@ function FavoritesScreen({navigation}) {
       </View>
       <Icon name="bookmark" size={38} color='#e8eddf'/>
     </View>
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView>
         <View style={styles.searchInputContainer}>
           <Icon name="search" size={25} style={{marginLeft: 20}} />
           <TextInput
@@ -316,26 +298,12 @@ function FavoritesScreen({navigation}) {
         </View>
         
         <View>
-          <Animated.FlatList 
-            onMomentumScrollEnd={(e) => {
-              setActiveCardIndex(
-                Math.round(e.nativeEvent.contentOffset.x / cardWidth),
-              );
-            }}
-            onScroll={Animated.event(
-              [{nativeEvent: {contentOffset: {x: scrollX}}}],
-              {useNativeDriver: true},
-            )}
-            horizontal={true}
+          <FlatList 
+            showsVerticalScrollIndicator={false}
+            numColumns={2} 
             data={books}
-            contentContainerStyle={{
-              paddingVertical: 30,
-              paddingLeft: 20,
-              paddingRight: cardWidth / 2 - 40,
-            }}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({item, index}) => <Card books={item} index={index} />}
-            snapToInterval={cardWidth}
+            renderItem={({item, index}) => <Card1 books={item} index={index} />}
+            snapToInterval={cardWidth1}
           />
         </View>
         
@@ -347,7 +315,7 @@ function FavoritesScreen({navigation}) {
   );
 }
 
-function SettingsScreen() {
+function SettingsScreen({navigation1}) {
   const navigation = useNavigation()
 
   const handleSignOut = () => {
@@ -360,7 +328,18 @@ function SettingsScreen() {
   }
   
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={{flex: 1, backgroundColor: "white"}}>
+    <View style={styles.header}>
+      <View style={{paddingBottom: 5}}>
+        <Text style={{fontSize: 25, fontWeight: 'bold', color: '#e8eddf'}}>
+          Profile
+        </Text>
+          
+
+      </View>
+      <Icon name="account-circle" size={38} color='#e8eddf'/>
+    </View>
+    <View style={styles.container}>
         <Text>Email: {auth.currentUser?.email}</Text>
         <TouchableOpacity
           onPress={handleSignOut}
@@ -369,6 +348,8 @@ function SettingsScreen() {
           <Text style={styles.buttonText}>Sign out</Text>
         </TouchableOpacity>
       </View>
+    </SafeAreaView>
+      
     );
 }
 
@@ -437,12 +418,9 @@ function MyTabs() {
 
 export default function App() {
   return (
-    
-      
-      <MyTabs />
-     
-      
   
+      <MyTabs />
+
   );
 }
 
@@ -487,6 +465,16 @@ const styles = StyleSheet.create({
     elevation: 15,
     marginRight: 20,
     borderRadius: 15,
+    backgroundColor: 'white',
+  },
+  card1: {
+    height: 220,
+    width: cardWidth1,
+    marginHorizontal: 10,
+    marginBottom: 20,
+    marginTop: 20,
+    borderRadius: 15,
+    elevation: 13,
     backgroundColor: 'white',
   },
   cardImage: {

@@ -7,6 +7,7 @@ const books = [
       author: 'Dr. Axel Rauschmayer',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'https://exploringjs.com/impatient-js/downloads/impatient-js-preview-book.pdf',
+      reviews: '78',
       
     },
     {
@@ -16,6 +17,7 @@ const books = [
       author: 'Ian Mackie',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'https://warin.ca/ressources/books/2019_Book_AdvancedGuideToPython3Programm.pdf',
+      reviews: '34',
     },
     {
       id: '3',
@@ -24,6 +26,7 @@ const books = [
       author: 'David Amos, Dan Bader',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'https://static.realpython.com/python-basics-sample-chapters.pdf',
+      reviews: '55',
     },
     {
       id: '4',
@@ -32,6 +35,7 @@ const books = [
       author: 'Dr. Axel Rauschmayer',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'http://morten.planet.ee/MMM/dummies.pdf',
+      reviews: '76',
       
     },
     {
@@ -41,6 +45,7 @@ const books = [
       author: 'Dr. Axel Rauschmayer',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'https://riptutorial.com/Download/firebase.pdf',
+      reviews: '82',
     },
     {
       id: '6',
@@ -49,6 +54,7 @@ const books = [
       author: 'Michael Goodrich, Roberto Tamassia',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'http://xpzhang.me/teach/DS19_Fall/book.pdf',
+      reviews: '131',
     },
     {
       id: '7',
@@ -57,6 +63,7 @@ const books = [
       author: 'Laura Lemay, Charles Perkins',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'https://www.cs.cmu.edu/afs/cs.cmu.edu/user/gchen/www/download/java/LearnJava.pdf',
+      reviews: '96',
       
     },
     {
@@ -66,6 +73,7 @@ const books = [
       author: 'Robert Lafore',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'https://everythingcomputerscience.com/books/schoolboek-data_structures_and_algorithms_in_java.pdf',
+      reviews: '49',
     },
     {
       id: '9',
@@ -74,6 +82,7 @@ const books = [
       author: 'Ian Sommerville',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'https://engineering.futureuniversity.com/BOOKS%20FOR%20IT/Software-Engineering-9th-Edition-by-Ian-Sommerville.pdf',
+      reviews: '88',
       
     },
     {
@@ -83,6 +92,7 @@ const books = [
       author: 'Dominic Pacholczyk',
       details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat nisl vel pretium lectus quam id leo. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Justo laoreet sit amet cursus sit`,
       file: 'https://www.immagic.com/eLibrary/ARCHIVES/GENERAL/UXPIN_PL/U141030B.pdf',
+      reviews: '95',
     },
 
   ];
