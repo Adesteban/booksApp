@@ -71,7 +71,7 @@ const RegistrationScreen = () => {
 
         </View>
 
-        <View style={styles.buttonContainer}>
+      <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={handleSignUp}
           style={[styles.button, styles.buttonOutline]}

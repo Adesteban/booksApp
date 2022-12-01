@@ -4,6 +4,7 @@ import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 import { auth } from "../firebase";
 import { ToastAndroid} from 'react-native'
 import Logo from '../components/Logo'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -65,7 +66,7 @@ const LoginScreen = () => {
 
         <View style={styles.forgotPassword}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('ResetPasswordScreen')}
+          onPress={() => navigation.navigate('forgotPassword')}
         >
           <Text style={styles.forgot}>Forgot your password?</Text>
         </TouchableOpacity>
