@@ -24,9 +24,15 @@ function ExploreScreen({navigation}) {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
   const [activeCardIndex, setActiveCardIndex] = React.useState(0);
   const scrollX = React.useRef(new Animated.Value(0)).current;
+  
+
+ 
 
   const CategoryList = ({navigation}) => {
+    
+    
     return (
+    
       <View style={styles.categoryListContainer}>
         {categories.map((item, index) => (
           <TouchableOpacity
@@ -42,7 +48,7 @@ function ExploreScreen({navigation}) {
                       ? '#0782F9'
                       : 'grey',
                 }}>
-                {item}
+                {item} 
               </Text>
               {selectedCategoryIndex == index && (
                 <View
@@ -59,6 +65,7 @@ function ExploreScreen({navigation}) {
         ))}
       </View>
     );
+    
   };
 
   
@@ -80,6 +87,8 @@ function ExploreScreen({navigation}) {
       inputRange,
       outputRange: [0.8, 1, 0.8],
     });
+
+    
     return (
       <TouchableOpacity
         disabled={activeCardIndex != index}
@@ -125,6 +134,26 @@ function ExploreScreen({navigation}) {
     );
   };
 
+  const itemBooks = ({itemBooks}) => {
+    return (
+      <View>
+        <Text>{itemBooks.name}</Text>
+      </View>
+    )
+  }
+  const [dataFromState, setData] = useState({books});
+
+  const searchName = (input) => {
+    let data = books
+    let searchData = data.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase()
+      )
+    });
+    setData(searchData);
+  }
+
+  
+
   const TopHotelCard = ({books}) => {
     return (
       <View style={styles.topHotelCard}>
@@ -155,10 +184,12 @@ function ExploreScreen({navigation}) {
       </View>
     );
   };
+  
 
+  
+    
 
-
-
+  
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: "white"}}>
@@ -178,8 +209,13 @@ function ExploreScreen({navigation}) {
           <TextInput
             placeholder="Search by Title, or Author"
             style={{fontSize: 15, paddingLeft: 10}}
-            onChangeText={() => {books.name}}
+            onChangeText={(input) => {searchName(input)}}
           />
+          {/* <FlatList>
+            data={books}
+            renderItem={({item, index}) => <Card books={item} index={index} />}
+            keyExtractor={({item, index}) => index.toString}
+          </FlatList> */}
         </View>
         <CategoryList />
         <View>
@@ -201,6 +237,7 @@ function ExploreScreen({navigation}) {
               paddingRight: cardWidth / 2 - 40,
             }}
             showsHorizontalScrollIndicator={false}
+            
             renderItem={({item, index}) => <Card books={item} index={index} />}
             snapToInterval={cardWidth}
           />
@@ -288,7 +325,7 @@ function FavoritesScreen({navigation}) {
       </View>
       <Icon name="bookmark" size={38} color='#e8eddf'/>
     </View>
-    <ScrollView>
+   
         <View style={styles.searchInputContainer}>
           <Icon name="search" size={25} style={{marginLeft: 20}} />
           <TextInput
@@ -308,7 +345,9 @@ function FavoritesScreen({navigation}) {
         </View>
         
 
-      </ScrollView>
+      
+
+      
 
     </SafeAreaView>
     

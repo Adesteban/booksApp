@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
   ScrollView,
@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const DetailsScreen = ({navigation, route}) => {
   const item = route.params;
+  const [pressed,usepressed]=useState(true)
   
 
 
@@ -42,10 +43,12 @@ const DetailsScreen = ({navigation, route}) => {
             />
         </TouchableOpacity>
           
-          <TouchableOpacity
-          
-          onPress={()=>this.changeColor2()}>
-          <Icon name="bookmark-border" size={28} color={'white'} />
+          <TouchableOpacity 
+          onPress={()=>{(pressed)?usepressed(false):usepressed(true)}}>
+          {(pressed)?
+            <Icon name="bookmark-border" size={28} color={'white'} /> :
+            <Icon name="bookmark" size={28} color={'orange'} />
+          }
           </TouchableOpacity>
           
         </View>

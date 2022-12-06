@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "geekHub",
+    "name": "Geek Hub",
     "slug": "geekHub",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -17,16 +17,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "requ1em"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/splash.png"
-        
-      }
+      },
+      "package": "com.requ1em_10.geekHub"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "42c03ef3-aa14-49b9-85bc-1d8dd7af0d70"
+      }
     }
   }
 }

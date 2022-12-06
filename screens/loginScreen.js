@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
     forgotPassword: {
         width: '80%',
         alignItems: "center",
-        paddingTop: 20
+        paddingTop: 20,
+      
       },
     inputContainer: {
       width: '80%'
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
       },
       forgot: {
         fontSize: 13,
-        color: 'black',
+        color: '#0782F9',
       },
       link: {
         fontWeight: 'bold',
